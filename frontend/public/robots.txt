@@ -1,0 +1,3 @@
+User-agent: *
+
+Sitemap: https://next-starter.mybkuemix.net/sitemap.xml

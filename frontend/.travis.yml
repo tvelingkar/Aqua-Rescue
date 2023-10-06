@@ -1,0 +1,115 @@
+os: linux
+dist: focal
+group: beta
+language: node_js
+node_js: 18
+cache:
+  npm: false
+  # Yarn 2 does not store dependencies in node_modules anymore, at least not by default.
+  # Yarn 2 caches to the local .yarn directory, not the Travis default `$HOME/.yarn`
+  directories:
+    - ./.yarn/cache
+    - ./.next/cache
+services:
+  - docker
+
+# Use custom install step as Travis by default uses the --frozen-lockfile flag, which is deprecated
+install: yarn install --immutable
+
+env:
+  global:
+    - SONAR_DOCKER_REGISTRY=dbg-analytics-ddp-docker-local.artifactory.swg-devops.com
+    - CF_DOCKER_URL=icr.io CF_DOCKER_USERNAME=iamapikey DOCKER_REPO=next-starter DOCKER_NAMESPACE=app-${TRAVIS_BRANCH} TAG=${TRAVIS_COMMIT::7} IMAGE_TAG=$CF_DOCKER_URL/$DOCKER_NAMESPACE/$DOCKER_REPO:$TAG
+
+stages:
+  - name: 'Pre Merge'
+    if: (type = pull_request) AND (branch = dev)
+  - name: 'Quality Check'
+    if: (type = push) AND (branch = dev)
+  - name: 'Package'
+    if: (type = push) AND ((branch = dev) OR (branch = main))
+  - name: 'Deploy'
+    if: (type = push) AND ((branch = dev) OR (branch = main))
+
+jobs:
+  include:
+    - stage: 'Pre Merge'
+      name: 'Build Image'
+      env:
+        - JOB='Build Image'
+      script:
+        - chmod +x ./.ci-scripts/build-docker-image.sh
+        - chmod +x ./build-env.sh
+        - ./build-env.sh
+        - yarn build
+        - ./.ci-scripts/build-docker-image.sh
+    - name: 'Run audit and check package versions'
+      install: skip
+      env:
+        - JOB='Run audit and check package versions'
+      script:
+        - chmod +x ./.ci-scripts/run-audit-package-scans.sh
+        - ./.ci-scripts/run-audit-package-scans.sh
+    - name: 'Run linters'
+      env:
+        - JOB='Run linters'
+      script:
+        - yarn lint
+    # - name: 'Run SONAR Test'
+    #   env:
+    #     - JOB='SONAR Test'
+    #   script:
+    #     - chmod +x ./.ci-scripts/run-sonar-scan.sh
+    #     - ./.ci-scripts/run-sonar-scan.sh
+
+    - stage: 'Quality Check'
+      name: 'Run audit and check package versions'
+      install: skip
+      env:
+        - JOB='Run audit and check package versions'
+      script:
+        - chmod +x ./.ci-scripts/run-audit-package-scans.sh
+        - ./.ci-scripts/run-audit-package-scans.sh
+    - name: 'Run linters'
+      env:
+        - JOB='Run linters'
+      script:
+        - yarn lint
+    # - name: 'Run SONAR Test'
+    #   env:
+    #     - JOB='SONAR Test'
+    #   script:
+    #     - chmod +x ./.ci-scripts/run-sonar-scan.sh
+    #     - ./.ci-scripts/run-sonar-scan.sh
+
+    - stage: 'Package'
+      name: 'Build & Push Image'
+      env:
+        - JOB='Build & Push Image'
+      script:
+        - chmod +x ./.ci-scripts/package-docker-image.sh
+        - chmod +x ./build-env.sh
+        - ./build-env.sh
+        - yarn build
+        - ./.ci-scripts/package-docker-image.sh
+
+    - stage: 'Deploy'
+      name: 'Deploy Application'
+      install: skip
+      env:
+        - JOB='Deploy Application'
+      script:
+        - chmod +x ./.ci-scripts/deploy.sh
+        - ./.ci-scripts/deploy.sh
+
+# notifications:
+#   slack:
+#     rooms:
+#       - cognitive-app:QGXiJ8WmAYoYc3sdpQ0xoApj
+#     on_failure: always
+#     on_success: always
+#     template:
+#       - '%{repository_slug}#%{build_number} (%{branch} - %{commit} - author: %{author})'
+#       - 'Commit Message : %{commit_message}'
+#       - 'Change view : %{compare_url}'
+#       - 'Build details : duration : %{elapsed_time} %{build_url}'

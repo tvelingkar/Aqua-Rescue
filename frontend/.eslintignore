@@ -1,0 +1,5 @@
+**/*.spec.tsx
+node_modules
+next-env.d.ts
+guide
+public/static
