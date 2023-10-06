@@ -1,0 +1,8 @@
+{
+  "concurrency": 10,
+  "dep": "prod, peer, optional, bundle",
+  "errorLevel": 2,
+  "minimal": true,
+  "packageManager": "yarn",
+  "reject": []
+}
