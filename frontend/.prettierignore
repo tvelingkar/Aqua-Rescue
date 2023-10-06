@@ -1,0 +1,17 @@
+# Ignore artifacts:
+build
+coverage
+DomainVerification.html
+.next
+node_modules
+.scannerwork
+public/static
+next-env.d.ts
+guide
+.travis.yml
+.yarn
+.app-config
+manifests
+__mocks__
+__tests__
+node_modules
