@@ -28,4 +28,7 @@ export class SensorData {
 
   @Column()
   timestamp: string;
+
+  @Column({ type: 'timestamp' })
+  resolution_date:Date
 }
