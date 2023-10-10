@@ -12,7 +12,7 @@ constructor(
   ) {}
 
   async getLeakDetails(mall_id: string): Promise<SensorData[]> {
-    return await this.sensorDataRepository.find({where:{mall_id: mall_id}});
+    return await this.sensorDataRepository.find({where:{mall_id: mall_id,leak_detected:"TRUE"}});
   }
 
   async getLeakInfobyId(mall_id: string,leak_id:string): Promise<SensorData> {
@@ -20,7 +20,6 @@ constructor(
     return value;
   }
 
-  
   async updateLeakInfo(leak_id:string,leakInfoData:updateLeakInfoDto): Promise<UpdateResult> {
     const LeakInfo=await this.sensorDataRepository.findOne({where:{sensor_id:leak_id}});
     LeakInfo.resolution_date=leakInfoData.resolution_date
