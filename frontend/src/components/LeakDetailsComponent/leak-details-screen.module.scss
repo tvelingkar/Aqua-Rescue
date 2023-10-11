@@ -1,0 +1,120 @@
+.mallScreenContainer {
+    // margin-top: 6rem;
+    // margin-left: 2rem;
+    // margin-right: 2rem;
+    // margin-bottom: 2rem;
+}
+
+.leakHeading {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 2rem;
+
+}
+
+.leakItems {
+    align-items: center;
+    text-align: center;
+}
+
+.resolveButton {
+    padding-top: 1rem;
+    align-items: center;
+    text-align: center;
+}
+
+.leakDetailsContainer {
+    margin-top: 2rem;
+    display: flex;
+    gap: 2rem;
+}
+
+.metreDetailsContainer {
+    width: 50%;
+    // text-align: center;
+}
+
+// .leakDetails {
+//     display: flex;
+//     flex-wrap: wrap;
+//     text-align: center;
+
+//     .itemContainer {
+//         margin: 0.5rem 0 1rem;
+//         // width: 33.33%;
+//         // min-width: 33.33%;
+//         padding: 0 0.2rem;
+//         text-align: center;
+
+//         .itemLabel {
+//             font-weight: 400;
+//             color: #525252;
+//             font-size: 1rem;
+//             margin-bottom: -0.25em;
+//         }
+
+//         .itemValue {
+//             font-weight: 400;
+//             color: #161616;
+//             font-size: 0.875rem;
+//             // display: flex;
+//             // align-items: center;
+//             // word-break: break-word;
+//             line-height: 1rem;
+//         }
+//     }
+// }
+
+.gridContainer {
+    display: flex;
+}
+.iconContainer {
+    margin: 0.8rem 0 1rem;
+    width: 18px !important;
+    height: 18px !important;
+}
+.leakDetails {
+        display: flex;
+        flex-wrap: wrap;
+        // text-align: center;
+        flex-direction: column;
+        
+        
+    }
+        .itemContainer {
+        margin: 0.5rem 0 1rem;
+        // width: 33.33%;
+        // min-width: 33.33%;
+        // padding: 0 0.2rem;
+        padding-left: 0.2rem;
+        // text-align: center;
+        display: flex;
+        flex-direction: column;
+
+        }
+        .itemLabel {
+            font-weight: 400;
+            color: #525252;
+            font-size: 0.875rem;
+            margin-bottom: -0.25em;
+        }
+
+        .itemValue {
+            font-weight: 400;
+            color: #161616;
+            font-size: 1rem;
+            // display: flex;
+            // align-items: center;
+            // word-break: break-word;
+            line-height: 1.5rem;
+        }
+        .tileTitle {
+            padding-top: 1rem;
+            padding-left: 2rem;
+            padding-bottom: 1rem;
+        }
+    
+    .skeletonLoader {
+        width: 100% !important;
+    }
