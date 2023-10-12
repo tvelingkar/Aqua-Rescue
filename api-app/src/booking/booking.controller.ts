@@ -2,7 +2,6 @@ import { Controller, Get, Param, Post, Body, Res, HttpStatus } from '@nestjs/com
 import { BookingService } from './booking.service';
 import { BookingData } from './entities/booking-data.entity';
 import { BookingResponse } from './dto/booking.dto';
-import { response } from "express";
 
 @Controller('booking')
 export class BookingController {
@@ -20,14 +19,14 @@ export class BookingController {
 
 	@Post('/')
 	async bookAvailableWater(@Body() payload: BookingData, @Res() response): Promise<BookingResponse> {
-		const bookingInfo = await this.BookingService.bookAvailableWater(payload);
-		if(bookingInfo) {
+		try {
+			await this.BookingService.bookAvailableWater(payload);
 			return response.status(HttpStatus.CREATED).json({
-				status: "Success"
+				status: 'Success'
 			});
-		} else {
+		} catch(err) {
 			return response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
-				status: "Failure"
+				status: 'Failure'
 			});
 		}
 	}
