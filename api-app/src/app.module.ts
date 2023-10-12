@@ -4,6 +4,9 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
 import { LeakInfoModule } from './leak_info/leak_info.module';
+import { BookingModule } from './booking/booking.module';
+import { WaterAvailabilityModule } from './water_availability/water_availability.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -12,6 +15,8 @@ import { LeakInfoModule } from './leak_info/leak_info.module';
     }),
     DatabaseModule,
     LeakInfoModule,
+    BookingModule,
+    WaterAvailabilityModule,
   ],
   controllers: [AppController],
   providers: [AppService],
