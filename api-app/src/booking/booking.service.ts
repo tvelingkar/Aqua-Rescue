@@ -25,10 +25,11 @@ export class BookingService {
 		booking.booking_date = data.booking_date;
 		booking.booking_contact_name = data.booking_contact_name;
 		booking.booking_contact = data.booking_contact;
-		booking.collection_start_date = data.collection_start_date;
-		booking.collection_end_date = data.collection_end_date;
+		booking.collection_start_time = data.collection_start_time;
+		booking.collection_end_time = data.collection_end_time;
 		booking.ngo_id = data.ngo_id;
 		booking.mall_id = data.mall_id;
+		booking.created_date = new Date();
 		return this.bookingDataRepository.save(booking);
 	}
 }

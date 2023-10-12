@@ -8,11 +8,11 @@ export class BookingData {
 	@Column()
 	mall_id: string;
 
-	@Column()
-	booking_date: string;
+	@Column({ type: 'timestamp' })
+	booking_date: Date;
 
 	@Column()
-	amount_booked: string;
+	amount_booked: number;
 
 	@Column()
 	booking_contact_name: string;
@@ -24,8 +24,11 @@ export class BookingData {
 	ngo_id: string;
 
 	@Column()
-	collection_start_date: string;
+	collection_start_time: string;
 
 	@Column()
-	collection_end_date: string;
+	collection_end_time: string;
+
+	@Column({ type: 'timestamp' })
+	created_date: Date;
 }
