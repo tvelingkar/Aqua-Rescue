@@ -12,7 +12,7 @@ constructor(
   ) {}
 
   async getLeakDetails(mall_id: string): Promise<SensorData[]> {
-    return await this.sensorDataRepository.find({where:{mall_id: mall_id,leak_detected:"TRUE"}});
+    return await this.sensorDataRepository.find({where:{mall_id: mall_id,leak_detected:"true"}});
   }
 
   async getLeakInfobyId(mall_id: string,leak_id:string): Promise<SensorData> {
