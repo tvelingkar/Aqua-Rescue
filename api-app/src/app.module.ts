@@ -6,6 +6,8 @@ import { DatabaseModule } from './database/database.module';
 import { LeakInfoModule } from './leak_info/leak_info.module';
 import { BookingModule } from './booking/booking.module';
 import { WaterAvailabilityModule } from './water_availability/water_availability.module';
+import { NgoModule } from './ngo/ngo.module';
+import { MallModule } from './mall/mall.module';
 
 @Module({
   imports: [
@@ -17,6 +19,8 @@ import { WaterAvailabilityModule } from './water_availability/water_availability
     LeakInfoModule,
     BookingModule,
     WaterAvailabilityModule,
+    NgoModule,
+    MallModule,
   ],
   controllers: [AppController],
   providers: [AppService],
