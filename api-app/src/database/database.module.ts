@@ -9,9 +9,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         inject: [ConfigService],
         useFactory: (configService: ConfigService) => ({
           type: 'mongodb',
-          database: configService.get('MONDODB_DB'),
+          database: configService.get('MONGODB_DB'),
           entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-          url:configService.get('MONGODB_URL'),
+          url: configService.get('MONGODB_URL'),
           ssl: true,
           synchronize: true,
           useUnifiedTopology: true,
