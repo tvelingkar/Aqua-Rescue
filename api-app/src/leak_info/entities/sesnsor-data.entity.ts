@@ -1,6 +1,6 @@
 import { Column, Entity, ObjectId, ObjectIdColumn,Timestamp } from 'typeorm';
 
-@Entity({ name: "water-leakage-data" })
+@Entity({ name: "Water-Leakage-Data" })
 export class SensorData {
   @ObjectIdColumn()
   _id: ObjectId;
