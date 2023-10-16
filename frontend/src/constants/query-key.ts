@@ -12,4 +12,6 @@
 
 export enum QueryKeyConst {
   GET_APP_META_DATA = 'GET_APP_META_DATA',
+  GET_LEAK_DATA = 'GET_LEAK_DATA',
+  GET_LEAKS_LIST = 'GET_LEAKS_LIST'
 }
