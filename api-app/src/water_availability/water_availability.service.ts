@@ -9,7 +9,8 @@ export class WaterAvailabilityService {
 		@InjectRepository(WaterAvailabilityData) private waterAvailabilityRepository: Repository<WaterAvailabilityData>,
 	) {}
 
-	async getAvailableWater(mall_id: any): Promise<WaterAvailabilityData> {
-		return await this.waterAvailabilityRepository.findOne({ where: { mall_id: mall_id } });
+	async getAvailableWater(mall_location: any): Promise<WaterAvailabilityData[]> {
+		return (await this.waterAvailabilityRepository.find({ where: { mall_location: mall_location } }));
+	
 	}
 }
