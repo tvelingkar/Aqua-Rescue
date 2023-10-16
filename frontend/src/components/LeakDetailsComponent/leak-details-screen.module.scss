@@ -118,3 +118,20 @@
     .skeletonLoader {
         width: 100% !important;
     }
+
+    .toast {
+        position: absolute;
+        right: 0;
+        z-index: 99;
+        width: auto;
+        top: 5.5em;
+      
+        .bx--toast-notification__title {
+          margin-top: 0.75rem;
+        }
+      
+        .bx--toast-notification__subtitle {
+          margin-bottom: 0.75rem;
+          margin-top: 0.75rem;
+        }
+      }

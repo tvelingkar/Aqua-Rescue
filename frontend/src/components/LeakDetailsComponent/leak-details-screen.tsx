@@ -1,9 +1,10 @@
 'use client'
 
-import { Tile, Button, SkeletonPlaceholder } from '@carbon/react'
+import { Tile, Button, SkeletonPlaceholder, ToastNotification } from '@carbon/react'
 import { RainDrop, Hourglass, CalendarHeatMap, Meter, Enterprise, Floorplan } from '@carbon/icons-react'
 
 import { Grid, Column, TextInput } from '@carbon/react';
+import { WarningAlt } from '@carbon/icons-react';
 
 import styles from './leak-details-screen.module.scss'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -14,13 +15,13 @@ import { QueryKeyConst } from '@/constants/query-key';
 
 export const LeakDetailsScreen = ({ mallId, leakId }: any) => {
 
-  const { mallScreenContainer, leakHeading, leakItems, leakDetailsContainer, metreDetailsContainer, leakDetails, itemLabel, itemValue, itemContainer, tileTitle, resolveButton, gridContainer, iconContainer, skeletonLoader } = styles
+  const { mallScreenContainer, leakHeading, leakItems, leakDetailsContainer, metreDetailsContainer, leakDetails, itemLabel, itemValue, itemContainer, tileTitle, resolveButton, gridContainer, iconContainer, skeletonLoader, toast } = styles
 
 
   const queryClient = useQueryClient()
   const [leakDetailsData, setLeakDetailsData] = useState<any[]>([])
   const [sensorLocationData, setSensorLocationData] = useState<any[]>([])
-
+  const [isLeakResolved, setIsLeakResolved] = useState(false)
 
   const { data: leakData, isSuccess: isLeakDetailsSuccess, isFetching: leakDetailsIsFetching, isLoading: leakDetailsIsLoading } = useQuery([QueryKeyConst.GET_LEAK_DATA, leakId, mallId],
     () => LeakDetailsService.getLeakData(leakId, mallId));
@@ -30,27 +31,30 @@ export const LeakDetailsScreen = ({ mallId, leakId }: any) => {
       const data: any[] = []
       const sensorData: any[] = []
       data.push(
-        {
-          label: "Leak Start Date",
-          value: leakData.timestamp
-        },
+
         {
           label: "Sensor ID",
           value: leakData.sensor_id
+        },
+        {
+          label: "Leak Start Date",
+          value: leakData.timestamp
         })
 
       if (leakData.resolution_date !== undefined) {
         const d1 = new Date(leakData.timestamp)
         const d2 = new Date(leakData.resolution_date)
-        const leakDuration = (d2.getTime() - d1.getTime()) / (1000 * 3600 * 24)
+        const leakDuration = Math.trunc((d2.getTime() - d1.getTime()) / (1000 * 3600 * 24))
+
         data.push({
           label: "Leak Duration",
           value: `${leakDuration} days`
         },
-        {
+          {
             label: "Leak Resolution Date",
-            value: leakData.resolution_date
-        })
+            value: d2.toDateString()
+          })
+        setIsLeakResolved(true)
       }
       data.push({
         label: "Water Lost",
@@ -76,10 +80,9 @@ export const LeakDetailsScreen = ({ mallId, leakId }: any) => {
   const resolveLeak = useMutation(LeakDetailsService.resolveLeak, {
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: [QueryKeyConst.GET_LEAK_DATA] })
+      setIsLeakResolved(true)
     }
   })
-
-
 
 
   const onResolveButtonClick = () => {
@@ -90,16 +93,50 @@ export const LeakDetailsScreen = ({ mallId, leakId }: any) => {
   return (
     <div className={mallScreenContainer}>
 
+      {resolveLeak.isSuccess && <ToastNotification
+        className={toast}
+        id='dte-success-toast'
+        key={"Success Toast"}
+        caption=""
+        hideCloseButton={false}
+        iconDescription="close"
+        kind="success"
+        notificationType="toast"
+        role="alert"
+        subtitle="Leak resolved successfully"
+        timeout={7000}
+        title="Success"
+      // onCloseButtonClick={onNotificationClose}
+      />}
+
+      {resolveLeak.isError && <ToastNotification
+        className={toast}
+        id='dte-success-toast'
+        key={"Success Toast"}
+        caption=""
+        hideCloseButton={false}
+        iconDescription="close"
+        kind="error"
+        notificationType="toast"
+        role="alert"
+        subtitle="Error"
+        timeout={7000}
+        title="Error"
+      />}
+
       <Tile id="tile-1"
       >
         {leakDetailsIsLoading ? <SkeletonPlaceholder className={skeletonLoader} /> : <div className={leakHeading}>
-          <h4 className={leakItems}>Ongoing Leak</h4>
+          {!isLeakResolved ? <div className={leakItems}>
+            <h4>
+              Ongoing Leak </h4> </div> :
+            <h4 className={leakItems}> Leak Resolved! </h4>}
           <h5 className={leakItems}>{leakData?.excess_water} L/hr</h5>
           <div className={resolveButton}>
-            <Button size='md'
+            {!isLeakResolved && <Button size='md'
               onClick={onResolveButtonClick}>
               Resolve Leak
-            </Button>
+            </Button>}
           </div>
         </div>}
         <br />
