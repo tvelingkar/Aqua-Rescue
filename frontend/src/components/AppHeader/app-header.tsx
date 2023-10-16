@@ -48,21 +48,21 @@ export const AppHeader = memo((_props: AppHeaderProps): React.ReactElement => {
   const renderMenuContent = (_data: { ariaLabel: string }) => <>{authData?.name}</>
 
   return (
-    <Header aria-label="Next Starter">
+    <Header aria-label="Aqua Rescue">
       <SkipToContent />
-      <HeaderName href={AppConst.HOME_PAGE_URL} prefix="Next">
-        Starter
+      <HeaderName href={AppConst.HOME_PAGE_URL}>
+        Aqua Rescue
       </HeaderName>
       <HeaderGlobalBar>
         {authStatus === 'Success' ? (
-          <HeaderNavigation aria-label="Next Starter">
+          <HeaderNavigation aria-label="Aqua Rescue">
             <HeaderMenu aria-label="User Email Address" menuLinkName="" renderMenuContent={renderMenuContent}>
               {/* <HeaderMenuItem>
-              <label className="app-header__link">{userState.userData?.name}</label>
-            </HeaderMenuItem>
-            <HeaderMenuItem onClick={onLogoutClick}>
-              <label className="app-header__link">Logout</label>
-            </HeaderMenuItem> */}
+<label className="app-header__link">{userState.userData?.name}</label>
+</HeaderMenuItem>
+<HeaderMenuItem onClick={onLogoutClick}>
+<label className="app-header__link">Logout</label>
+</HeaderMenuItem> */}
             </HeaderMenu>
           </HeaderNavigation>
         ) : (

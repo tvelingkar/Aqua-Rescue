@@ -63,11 +63,11 @@ export const LeakDetailsScreen = ({ mallId, leakId }: any) => {
       sensorData.push(
         {
           label: "Floor No.",
-          value: leakData.floor_number
+          value: leakData.floor_no
         },
         {
           label: "Block No.",
-          value: leakData.block_number
+          value: leakData.block_no
         }
       )
       setLeakDetailsData(data)

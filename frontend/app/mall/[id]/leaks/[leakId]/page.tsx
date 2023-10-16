@@ -2,7 +2,6 @@
 
 import LeakDetailsScreen from '@/components/LeakDetailsComponent'
 import PageWrapper from '@/components/PageWrapper'
-import { Tile } from '@carbon/react'
 
 const Leaks = async ({ params }: any) => {
     return (
