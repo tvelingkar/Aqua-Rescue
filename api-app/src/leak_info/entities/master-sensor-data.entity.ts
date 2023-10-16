@@ -1,7 +1,7 @@
 import { Column, Entity, ObjectId, ObjectIdColumn,Timestamp } from 'typeorm';
 
-@Entity({ name: "Water-Leakage-Data" })
-export class SensorData {
+@Entity({ name: "Sensor-Master-Table" })
+export class MasterSensorData {
   @ObjectIdColumn()
   _id: ObjectId;
 
@@ -12,17 +12,15 @@ export class SensorData {
   sensor_id: string;
 
   @Column()
-  water_usage: string;
+  floor_no: string;
 
   @Column()
-  timestamp: string;
+  block_no: string;
 
   @Column()
-  excess_water: string;
+  is_water_reusable: string;
   
   @Column()
-  leak_detected: string;
+  is_active: string;
 
-  @Column({ type: 'timestamp' })
-  resolution_date:Date
 }
