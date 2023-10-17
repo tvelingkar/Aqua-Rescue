@@ -13,4 +13,12 @@ export class NgoService {
 		const ngoDetails = {...ngoData};
 		return this.ngoDataRepository.save(ngoDetails);
 	}
+
+  async getNGODetails(reg_no: string): Promise<NGOData[]> {
+    return await this.ngoDataRepository.find({where:{registration_number: reg_no}});
+  }
+  
+  async getNGODetailsByEmailId(email: string): Promise<NGOData[]> {
+    return await this.ngoDataRepository.find({where:{email_id: email}});
+  }
 }

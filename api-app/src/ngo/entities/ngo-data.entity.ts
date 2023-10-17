@@ -22,5 +22,8 @@ export class NGOData {
   
   @Column()
   address: string;
-
+ 
+  @Column()
+  email_id: string;
+   
 }
