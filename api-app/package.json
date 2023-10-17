@@ -1,5 +1,5 @@
 {
-  "name": "nest-typescript-starter",
+  "name": "aquarescue-api",
   "private": true,
   "version": "1.0.0",
   "description": "Nest TypeScript starter repository",
@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
+    "@nestjs/config": "^3.1.1",
     "@nestjs/core": "^10.0.0",
     "@nestjs/mongoose": "^10.0.1",
     "@nestjs/platform-express": "^10.0.0",
@@ -31,7 +32,6 @@
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.1",
-    "@nestjs/config": "^3.1.1",
     "@nestjs/schematics": "^10.0.1",
     "@nestjs/testing": "^10.0.0",
     "@swc/cli": "^0.1.62",

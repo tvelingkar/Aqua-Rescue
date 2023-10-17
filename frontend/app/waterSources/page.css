@@ -1,0 +1,120 @@
+.dates {
+  display: flex;
+  margin-left: 20px;
+}
+
+.sourceDetails {
+  display: flex;
+  justify-content: space-between;
+}
+
+.centerContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 50vh;
+  margin: 2%;
+}
+
+.dataTable {
+  margin: 22px;
+}
+
+.dateData {
+  color: #666;
+}
+
+.dateString {
+  color: black;
+  font-weight: bold;
+}
+
+.selected,
+.selected:hover {
+  background-color: #0f62fe;
+  color: white !important;
+
+  #white {
+    color: white;
+  }
+}
+
+.dateCard {
+  width: 120.5px;
+  padding: 5px;
+  margin: 6px;
+  text-align: center;
+  height: 110px;
+}
+
+.timeContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.cds--modal-content {
+  margin-bottom: 1rem;
+}
+
+.arrows {
+  height: 40px;
+  width: auto;
+  margin-top: 40px;
+  opacity: 0.7;
+}
+
+.arrows:hover {
+  cursor: pointer;
+}
+
+.heading {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.infoIcon {
+  margin-left: 10px;
+  opacity: 0.5;
+}
+
+.sourcesList {
+  border-bottom: 1px solid #eff1f3;
+}
+
+.sourcesList p {
+  font-size: 25px;
+}
+
+.cds--tile {
+  background-color: white;
+}
+
+#map {
+  height: 400px;
+  width: 100%;
+}
+
+.cds--inline-notification--error {
+  margin-top: -620px;
+  margin-left: 1490px;
+  width: 300px;
+}
+
+.cds--text-input-wrapper--inline--invalid .cds--form-requirement {
+  margin-top: 15px;
+  margin-left: 140px;
+  display: inline-flex;
+  width: 300px;
+}
+
+.cds--text-input__label-helper-wrapper {
+  max-width: 5.5rem;
+}
+
+.cds--inline-notification--success {
+  margin-top: -620px;
+  margin-left: 1490px;
+  width: 300px;
+}

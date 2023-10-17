@@ -1,14 +1,4 @@
-/**
- * IBM Confidential
- *
- * OCO Source Materials
- * Copyright IBM Corp.  2022
- *
- * The source code for this program is not published or otherwise
- * divested of its trade secrets, irrespective of what has been
- * deposited with the U.S. Copyright Office.
- *
- */
+
 import React from 'react'
 import { AppConst } from '@/constants/app'
 import { EXCEPTION_MAP } from '@/constants/exception'
@@ -26,7 +16,6 @@ type IProps = {
 export class ErrorBoundary extends React.Component<IProps, IState> {
   state = { hasError: false }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   componentDidCatch(error: Error, errorInfo: any) {
     if (EnvUtil.NODE_ENV !== 'production') {
       console.error({ error, errorInfo })

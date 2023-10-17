@@ -6,8 +6,8 @@ import { WaterAvailabilityService } from './water_availability.service';
 export class WaterAvailabilityController {
 	constructor(private WaterAvailabilityService: WaterAvailabilityService) {}
 
-	@Get('/mall_id/:mall_id')
-	async getWaterAvailability(@Param('mall_id') mall_id: string): Promise<WaterAvailabilityData> {
-		return await this.WaterAvailabilityService.getAvailableWater(mall_id);
+	@Get('/location/:location')
+	async getWaterAvailability(@Param('location') location: string): Promise<WaterAvailabilityData[]> {
+		return await this.WaterAvailabilityService.getAvailableWater(location);
 	}
 }

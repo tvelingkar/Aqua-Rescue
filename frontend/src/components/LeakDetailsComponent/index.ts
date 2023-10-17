@@ -1,0 +1,1 @@
+export { LeakDetailsScreen as default } from './leak-details-screen'

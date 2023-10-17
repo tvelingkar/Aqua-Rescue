@@ -1,6 +1,6 @@
 import { Column, Entity, ObjectId, ObjectIdColumn } from 'typeorm';
 
-@Entity({ name: "Water-Availability-Table" })
+@Entity({ name: "Mall-Master-Table" })
 export class WaterAvailabilityData {
 	@ObjectIdColumn()
 	_id: ObjectId;
@@ -9,8 +9,12 @@ export class WaterAvailabilityData {
 	mall_id: string;
 
 	@Column()
-	water_available: string;
+	mall_name: string;
 
 	@Column()
-	water_booked: string;
+	mall_location: string;
+
+	@Column()
+	water_available: Number;
+
 }

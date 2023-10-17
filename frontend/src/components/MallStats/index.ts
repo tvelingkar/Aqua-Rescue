@@ -1,0 +1,1 @@
+export { MallScreen as default } from './mall-stats'

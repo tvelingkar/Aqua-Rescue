@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+  aquarescue-ui:
+    image: aquarescue-ui:${AR_IMAGE_ID}
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+  # aquarescue-api:
+  #   image: aquarescue-api:${AR_IMAGE_ID}
+  #   build:
+  #     context: ../api-app
+  #     dockerfile: Dockerfile

@@ -1,13 +1,13 @@
 {
-  "short_name": "Next Starter",
-  "name": "Starter Kit for Next JS projects.",
-  "start_url": "/starter",
+  "short_name": "Aqua Rescue",
+  "name": "Aqua-Rescue: Smart water leak detection and reusable water estimation application with rainfall analysis for rainwater harvesting.",
+  "start_url": "/aqua-rescue",
   "display": "standalone",
   "theme_color": "#00e",
   "background_color": "#fafafa",
   "icons": [
     {
-      "src": "/starter/favicon.png",
+      "src": "/aqua-rescue/favicon.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/png"
     }
