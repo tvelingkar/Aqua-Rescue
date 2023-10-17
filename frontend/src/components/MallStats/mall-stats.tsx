@@ -32,7 +32,8 @@ export const MallScreen = ({ mallId }: any) => {
             setLeaks(data)
         }
     }, [leaksList, isLeaksListSuccess,mallId])
-    const alertRows = [...leaks, {
+    const alertRows = [...leaks.splice(0, 4)]
+    const infoRows = [{
         title: "Retreated Water",
         type: null,
         children: <div>
@@ -76,6 +77,15 @@ export const MallScreen = ({ mallId }: any) => {
             <div className={cardGroup}>
             { leaksListIsLoading ? <SkeletonPlaceholder /> :
                 alertRows.map((item, index) =>
+                    <StatCard mainTitle={item.title} icon={item.icon} key={index} href={item.href} >
+                        {item.children}
+                    </StatCard>
+                )}
+            </div>
+            <p className={groupHeading}>INFO</p>
+            <div className={cardGroup}>
+            { leaksListIsLoading ? <SkeletonPlaceholder /> :
+                infoRows.map((item, index) =>
                     <StatCard mainTitle={item.title} icon={item.icon} key={index} href={item.href} >
                         {item.children}
                     </StatCard>

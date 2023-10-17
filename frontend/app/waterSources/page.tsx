@@ -189,8 +189,8 @@ const WaterSources = () => {
         <div className="dataTable">
           <Tile style={{ borderBottom: '1px solid #eff1f3' }}>
             <div>
-              <p className="heading">List of Water Sources</p>
-              <p style={{ fontSize: '18px', color: '#666' }}>Note: Click on the desired soruce for more details</p>
+              <p className="heading">Nearby</p>
+              <p style={{ fontSize: '14px', color: '#666' }}>Note: Click on the desired soruce for more details</p>
             </div>
           </Tile>
           <ClickableTile
@@ -199,11 +199,11 @@ const WaterSources = () => {
             }}
             className="sourcesList"
           >
-            <p style={{ fontWeight: 'bold' }}>Pavillion Mall</p>
+            <p style={{ fontWeight: 'bold' }}>Phoenix Market City</p>
             <div className="sourceDetails">
-              <p className="dateData">1500L</p>
+              <p className="dateData">6800L</p>
               <div style={{ display: 'flex', color: '#666', zIndex: '9999' }}>
-                <p>0.5Km</p>
+                <p>0.2Km</p>
                 <Image className="infoIcon" src={require('./images/info.svg')} alt="map" />
               </div>
             </div>
@@ -214,11 +214,11 @@ const WaterSources = () => {
             }}
             className="sourcesList"
           >
-            <p style={{ fontWeight: 'bold' }}>Pavillion Mall</p>
+            <p style={{ fontWeight: 'bold' }}>Oberoi Mall</p>
             <div className="sourceDetails">
-              <p className="dateData">1500L</p>
+              <p className="dateData">5400L</p>
               <div style={{ display: 'flex', color: '#666' }}>
-                <p>0.5Km</p>
+                <p>1.3Km</p>
                 <Image className="infoIcon" src={require('./images/info.svg')} alt="map" />
               </div>
             </div>
@@ -229,11 +229,11 @@ const WaterSources = () => {
             }}
             className="sourcesList"
           >
-            <p style={{ fontWeight: 'bold' }}>Pavillion Mall</p>
+            <p style={{ fontWeight: 'bold' }}>Atria, The Millennium Mall</p>
             <div className="sourceDetails">
-              <p className="dateData">1500L</p>
+              <p className="dateData">5500L</p>
               <div style={{ display: 'flex', color: '#666' }}>
-                <p>0.5Km</p>
+                <p>3.5Km</p>
                 <Image className="infoIcon" src={require('./images/info.svg')} alt="map" />
               </div>
             </div>
@@ -243,8 +243,8 @@ const WaterSources = () => {
         {showModal && (
           <Modal
             open
-            size="sm"
-            modalHeading="Pavillion Mall"
+            size="md"
+            modalHeading="Phoenix Market City"
             primaryButtonText="Book"
             secondaryButtonText="Cancel"
             onRequestClose={() => {
@@ -265,15 +265,15 @@ const WaterSources = () => {
               submitForm(e)
             }}
           >
-            <p style={{ marginBottom: '10px', fontSize: '20px', fontWeight: 'bold' }}>Available: 1500L</p>
+            <p style={{ marginBottom: '10px', fontSize: '20px', fontWeight: 'bold' }}>Available: 6800L</p>
             <div style={{ marginBottom: '30px' }}>
               <TextInput
                 type="text"
                 id="1"
                 size="sm"
                 inline
-                labelText="Lts to Reserve:"
-                placeholder="Enter the no.of litres to reserve"
+                labelText="Litres of Water to Reserve:"
+                placeholder="Enter the litres of water to reserve"
                 name="amount_booked"
                 value={bookingData.amount_booked}
                 onChange={handleData}
