@@ -47,6 +47,7 @@ const WaterSources = () => {
 
   useEffect(() => {
     setSelectedDate(dateArray[0].date.toString())
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const [bookingData, setBookingData] = useState<any>({

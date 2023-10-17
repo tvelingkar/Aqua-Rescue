@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-const useBookingApiNotification = create((set) => ({
+const useBookingApiNotification = create((set: any) => ({
   showApiResponseNotification: false,
   apiResponseNotificationTitle: '',
   responseStatus: '',

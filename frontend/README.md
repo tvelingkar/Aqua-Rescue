@@ -1,6 +1,6 @@
-# Next Starter
+# Aqua Rescue UI
 
-Starter Kit for Next JS projects.
+Aqua-Rescue: Smart water leak detection and reusable water estimation application with rainfall analysis for rainwater harvesting.
 
 ## Getting Started
 

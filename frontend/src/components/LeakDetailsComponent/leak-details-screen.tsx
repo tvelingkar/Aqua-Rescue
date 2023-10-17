@@ -4,12 +4,10 @@ import { Tile, Button, SkeletonPlaceholder, ToastNotification } from '@carbon/re
 import { RainDrop, Hourglass, CalendarHeatMap, Meter, Enterprise, Floorplan } from '@carbon/icons-react'
 
 import { Grid, Column, TextInput } from '@carbon/react';
-import { WarningAlt } from '@carbon/icons-react';
 
 import styles from './leak-details-screen.module.scss'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { LeakDetailsService } from '@/services/leakDetails';
-import { useQueryLeakData } from '@/hooks/useQueryLeakData';
 import { useEffect, useState } from 'react';
 import { QueryKeyConst } from '@/constants/query-key';
 
@@ -153,7 +151,7 @@ export const LeakDetailsScreen = ({ mallId, leakId }: any) => {
             <div>
               <h5 className={tileTitle}>Sensor Location</h5>
               <Grid>
-                {sensorLocationData?.map((item) => (<Column sm={4} lg={8} md={4} as="article">
+                {sensorLocationData?.map((item, index) => (<Column key={`${item.label}-${item.value}-${index}`} sm={4} lg={8} md={4} as="article">
                   <div className={gridContainer}>
                     <div className={iconContainer}>
                       {item.label == 'Floor No.' ? <Floorplan /> :
@@ -181,7 +179,7 @@ export const LeakDetailsScreen = ({ mallId, leakId }: any) => {
 
               <Grid>
 
-                {leakDetailsData?.map((item) => (<Column sm={4} lg={8} md={4} as="article">
+                {leakDetailsData?.map((item, index) => (<Column key={`${item.label}-${item.value}-${index}`} sm={4} lg={8} md={4} as="article">
                   <div className={gridContainer}>
                     <div className={iconContainer}>
                       {item.label == 'Water Lost' ? <RainDrop /> :
