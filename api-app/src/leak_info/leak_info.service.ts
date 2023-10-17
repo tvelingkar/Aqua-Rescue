@@ -31,6 +31,7 @@ constructor(
   async updateLeakInfo(leak_id:string,leakInfoData:updateLeakInfoDto): Promise<UpdateResult> {
     const LeakInfo=await this.sensorDataRepository.findOne({where:{sensor_id:leak_id}});
     LeakInfo.resolution_date=leakInfoData.resolution_date
+    LeakInfo.leak_detected="false"
 
     const leakInfoUpdate=await this.sensorDataRepository.update({_id:LeakInfo._id},LeakInfo);
     return leakInfoUpdate;
