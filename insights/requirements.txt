@@ -1,2 +1,4 @@
 pymilvus
 pandas
+langchain
+ibm-generative-ai
