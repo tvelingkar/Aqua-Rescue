@@ -10,7 +10,7 @@ import {
   HeaderMenu,
   SkipToContent,
 } from '@carbon/react'
-import { Login } from '@carbon/react/icons'
+import { Login,Location } from '@carbon/react/icons'
 
 import { AppConst } from '@/constants/app'
 import useStore from '@/store/use-store'
@@ -38,6 +38,7 @@ export const AppHeader = memo((_props: AppHeaderProps): React.ReactElement => {
       <HeaderName prefix='Team' href={AppConst.HOME_PAGE_URL}>
         Aqua Rescue
       </HeaderName>
+	  <p style={{marginLeft:'1510px'}}><Location/>Pune</p>
       <HeaderGlobalBar>
         {authStatus === 'Success' ? (
           <HeaderNavigation aria-label="Aqua Rescue">

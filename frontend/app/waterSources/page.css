@@ -97,7 +97,7 @@
 }
 
 .cds--inline-notification--error {
-  margin-top: -620px;
+  margin-top: -380px;
   margin-left: 1490px;
   width: 300px;
 }
@@ -114,7 +114,13 @@
 }
 
 .cds--inline-notification--success {
-  margin-top: -620px;
+  margin-top: -380px;
   margin-left: 1490px;
   width: 300px;
+}
+
+.mapModal {
+  .cds--modal-footer {
+    display: none;
+  }
 }

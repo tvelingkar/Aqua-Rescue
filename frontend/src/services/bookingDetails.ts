@@ -21,6 +21,7 @@ export const useCreateBooking = () => {
   return useMutation(createBooking, {
     onSuccess: (data) => {
       if (data.status === 'Success') {
+		console.log('hi')
         setShowApiResponseNotification(true)
         setApiResponseNotificationTitle('Booked Successfully')
         setResponseStatus('success')

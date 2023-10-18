@@ -6,6 +6,7 @@ import { ClickableTile, Modal, TextInput, Tile, InlineNotification } from '@carb
 import './page.css'
 import Image from 'next/image'
 import { useCreateBooking } from '@/services/bookingDetails'
+import { MallsListService } from '@/services/mallDetails'
 import useBookingApiNotification from '@/store/booking-notification'
 
 const WaterSources = () => {
@@ -21,7 +22,17 @@ const WaterSources = () => {
   const [isInputEmpty2, setIsInputEmpty2] = useState(false)
   const [isInputEmpty3, setIsInputEmpty3] = useState(false)
   const [phoneInvalidText, setPhoneInvalidText] = useState('')
-  const { showApiResponseNotification, apiResponseNotificationTitle, responseStatus } = useBookingApiNotification()
+  const { showApiResponseNotification, apiResponseNotificationTitle, responseStatus } = useBookingApiNotification() as {
+    showApiResponseNotification: boolean
+    apiResponseNotificationTitle: string
+    responseStatus: string
+  }
+  const [mallsList, setMallsList] = useState<any>([])
+  const [showApiNotification, setShowApiNotification] = useState(false)
+  const [mallName, setMallName] = useState('Mall')
+  const [waterAvailable, setWaterAvailable] = useState(0)
+  const [reserveInvalidText, setReserveInvalidText] = useState('')
+  const [showMapModal, setShowMapModal] = useState(false)
 
   const handleNextDates = () => {
     const newStartDateIndex = visibleStartDateIndex + 1
@@ -47,8 +58,19 @@ const WaterSources = () => {
 
   useEffect(() => {
     setSelectedDate(dateArray[0].date.toString())
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const fetchMallsList = async () => {
+      try {
+        const mallsData = await MallsListService.getMallsList()
+        setMallsList(mallsData)
+      } catch (error) {
+        setShowApiNotification(true)
+      }
+    }
+    fetchMallsList()
   }, [])
+
+  console.log(showApiResponseNotification)
 
   const [bookingData, setBookingData] = useState<any>({
     amount_booked: '',
@@ -71,7 +93,7 @@ const WaterSources = () => {
       [name]: value,
       booking_date: selectedDateTimestamp,
       mall_id: '1',
-      ngo_id: '1',
+      ngo_id: '1657',
     })
   }
 
@@ -104,6 +126,16 @@ const WaterSources = () => {
     e.preventDefault()
     if (bookingData.amount_booked.trim() === '') {
       setIsInputEmpty1(true)
+      setReserveInvalidText('*Required')
+      setShowModal(true)
+      return
+    } else {
+      setIsInputEmpty1(false)
+    }
+
+    if (bookingData.amount_booked > waterAvailable) {
+      setIsInputEmpty1(true)
+      setReserveInvalidText('Cannot reserve more than available')
       setShowModal(true)
       return
     } else {
@@ -148,6 +180,13 @@ const WaterSources = () => {
       return
     }
     createBookingMutation.mutate(bookingData)
+    setBookingData({
+      amount_booked: '',
+      booking_contact_name: '',
+      booking_contact: '',
+      collection_start_time: '',
+      collection_end_time: '',
+    })
   }
 
   return (
@@ -193,58 +232,36 @@ const WaterSources = () => {
               <p style={{ fontSize: '14px', color: '#666' }}>Note: Click on the desired soruce for more details</p>
             </div>
           </Tile>
-          <ClickableTile
-            onClick={() => {
-              setShowModal(true)
-            }}
-            className="sourcesList"
-          >
-            <p style={{ fontWeight: 'bold' }}>Phoenix Market City</p>
-            <div className="sourceDetails">
-              <p className="dateData">6800L</p>
-              <div style={{ display: 'flex', color: '#666', zIndex: '9999' }}>
-                <p>0.2Km</p>
-                <Image className="infoIcon" src={require('./images/info.svg')} alt="map" />
+          {mallsList.map((mall: any) => (
+            <ClickableTile
+              key={mall.id}
+              onClick={() => {
+                setShowModal(true)
+                setMallName(mall.mall_name)
+                setWaterAvailable(mall.water_available)
+              }}
+              className="sourcesList"
+            >
+              <p style={{ fontWeight: 'bold' }}>{mall.mall_name}</p>
+              <div className="sourceDetails">
+                <p className="dateData">{`${mall.water_available}L`}</p>
+                <div
+                  onMouseEnter={() => setShowMapModal(true)}
+                  style={{ display: 'flex', color: '#666' }}
+                >
+                  <p>0.2Km</p>
+                  <Image className="infoIcon" src={require('./images/info.svg')} alt="map" />
+                </div>
               </div>
-            </div>
-          </ClickableTile>
-          <ClickableTile
-            onClick={() => {
-              setShowModal(true)
-            }}
-            className="sourcesList"
-          >
-            <p style={{ fontWeight: 'bold' }}>Oberoi Mall</p>
-            <div className="sourceDetails">
-              <p className="dateData">5400L</p>
-              <div style={{ display: 'flex', color: '#666' }}>
-                <p>1.3Km</p>
-                <Image className="infoIcon" src={require('./images/info.svg')} alt="map" />
-              </div>
-            </div>
-          </ClickableTile>
-          <ClickableTile
-            onClick={() => {
-              setShowModal(true)
-            }}
-            className="sourcesList"
-          >
-            <p style={{ fontWeight: 'bold' }}>Atria, The Millennium Mall</p>
-            <div className="sourceDetails">
-              <p className="dateData">5500L</p>
-              <div style={{ display: 'flex', color: '#666' }}>
-                <p>3.5Km</p>
-                <Image className="infoIcon" src={require('./images/info.svg')} alt="map" />
-              </div>
-            </div>
-          </ClickableTile>
+            </ClickableTile>
+          ))}
         </div>
 
         {showModal && (
           <Modal
             open
             size="md"
-            modalHeading="Phoenix Market City"
+            modalHeading={mallName}
             primaryButtonText="Book"
             secondaryButtonText="Cancel"
             onRequestClose={() => {
@@ -265,7 +282,9 @@ const WaterSources = () => {
               submitForm(e)
             }}
           >
-            <p style={{ marginBottom: '10px', fontSize: '20px', fontWeight: 'bold' }}>Available: 6800L</p>
+            <p
+              style={{ marginBottom: '10px', fontSize: '20px', fontWeight: 'bold' }}
+            >{`Available: ${waterAvailable}L`}</p>
             <div style={{ marginBottom: '30px' }}>
               <TextInput
                 type="text"
@@ -278,7 +297,7 @@ const WaterSources = () => {
                 value={bookingData.amount_booked}
                 onChange={handleData}
                 invalid={isInputEmpty1}
-                invalidText="*Required"
+                invalidText={reserveInvalidText}
               />
             </div>
             <p style={{ marginTop: '15px', marginBottom: '10px' }}>Details for Collection:</p>
@@ -370,6 +389,40 @@ const WaterSources = () => {
             statusIconDescription="notification"
             title={apiResponseNotificationTitle}
           />
+        )}
+        {showApiNotification && (
+          <InlineNotification
+            actionButtonLabel="Action"
+            kind="error"
+            aria-label="closes notification"
+            onClose={() => setShowApiNotification(false)}
+            onCloseButtonClick={() => setShowApiNotification(false)}
+            statusIconDescription="notification"
+            title="Error fetching malls list"
+          />
+        )}
+        {showMapModal && (
+          <Modal
+            open
+            size="sm"
+			className="mapModal"
+            modalHeading={mallName}
+            onRequestClose={() => {
+              setShowMapModal(false)
+            }}
+          >
+            <div id="map" style={{ height: '400px', width: '100%' }}>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.877763511247!2d73.83599687579716!3d18.534425168749717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf7c2c15e367%3A0x2d5d6ee0f762e510!2sCentral%20Mall%2C%20Hare%20Krishna%20Mandir%20Rd%2C%20Model%20Colony%2C%20Shivajinagar%2C%20Pune%2C%20Maharashtra%20411016!5e0!3m2!1sen!2sin!4v1697614643126!5m2!1sen!2sin"
+                width="630"
+                height="390"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </Modal>
         )}
       </div>
     </div>
