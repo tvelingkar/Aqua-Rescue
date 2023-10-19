@@ -25,7 +25,7 @@ export const MallScreen = ({ mallId }: any) => {
                         <br />
                     </div>,
                     icon: <FloodWarning size={32} />,
-                    href: `/app/mall/${mallId}/leaks/${leakItem.sensor_id}` 
+                    href: `/mall/${mallId}/leaks/${leakItem.sensor_id}` 
                 }
                 data.push(formattedLeakItem)
             })

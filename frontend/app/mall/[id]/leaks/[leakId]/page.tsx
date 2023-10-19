@@ -2,8 +2,11 @@
 
 import LeakDetailsScreen from '@/components/LeakDetailsComponent'
 import PageWrapper from '@/components/PageWrapper'
+import { useParams } from 'next/navigation'
 
-const Leaks = async ({ params }: any) => {
+const Leaks = () => {
+    const params = useParams()
+
     return (
         <PageWrapper>
             <LeakDetailsScreen mallId={params.id} leakId={params.leakId} />

@@ -52,7 +52,7 @@ export const LeakDetailsScreen = ({ mallId, leakId }: any) => {
             label: "Leak Resolution Date",
             value: d2.toDateString()
           })
-        setIsLeakResolved(true)
+        setIsLeakResolved(false)
       }
       data.push({
         label: "Water Lost",
