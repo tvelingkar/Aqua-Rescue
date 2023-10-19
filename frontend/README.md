@@ -1,6 +1,6 @@
 # Aqua Rescue UI
 
-Aqua-Rescue: Smart water leak detection and reusable water estimation application with rainfall analysis for rainwater harvesting.
+Aqua Rescue: Smart water leak detection and reusable water estimation application with rainfall analysis for rainwater harvesting.
 
 ## Getting Started
 
