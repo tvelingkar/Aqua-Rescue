@@ -1,6 +1,14 @@
-# Submission name
+# AQUA RESCUE
 
-Aqua-Rescue is an innovative application designed to address three critical aspects of water management in malls: identifying water leaks, estimating the availability of reusable water and incorporating rainfall analysis feature to facilitate rainwater harvesting in malls thereby further reducing their dependency on external water sources and promoting sustainability. With a focus on sustainability and aiding NGOs in their initiatives to ensure availability and sustainable management of water and sanitation for all, this application offers real-time monitoring, alerts, and data analysis to help conserve water resources.
+Aqua Rescue is an innovative application designed to address three critical aspects of water management in malls: identifying water leaks, estimating the availability of reusable water and incorporating rainfall analysis feature to facilitate rainwater harvesting in malls thereby further reducing their dependency on external water sources and promoting sustainability. With a focus on sustainability and aiding NGOs in their initiatives to ensure availability and sustainable management of water and sanitation for all, this application offers real-time monitoring, alerts, and data analysis to help conserve water resources.
+
+## Design
+
+Implemented using the IBM Carbon Design System and IBM AI Technologies, Aqua Rescue provides the solution for malls and NGOs using a straightforward UI accessible on any device.
+
+The Mall dashboard will display leak information and also water statistics through graphs and other visuals. This will provide the Mall Personnel with the insight they need to make an informed decision on their water use to ensure cost benefits.
+
+The NGO App will be one stop solution for the NGOs for their water needs. They will see Malls with available water listed alongwith a booking option. We will also provide water insights for NGO events using our intelligent system.
 
 # Key Features
 

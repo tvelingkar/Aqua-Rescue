@@ -16,8 +16,6 @@
 - [Additional details](#additional-details)
   - [How to run the project](#how-to-run-the-project)
 
-_INSTRUCTIONS: Complete all required deliverable sections below._
-
 ## Project summary
 
 ### The issue we are hoping to solve
