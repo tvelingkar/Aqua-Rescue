@@ -15,13 +15,6 @@
   - [Project development roadmap](#project-development-roadmap)
 - [Additional details](#additional-details)
   - [How to run the project](#how-to-run-the-project)
-  - [Live demo](#live-demo)
-- [About this template](#about-this-template)
-  - [Contributing](#contributing)
-  - [Versioning](#versioning)
-  - [Authors](#authors)
-  - [License](#license)
-  - [Acknowledgments](#acknowledgments)
 
 _INSTRUCTIONS: Complete all required deliverable sections below._
 
@@ -29,15 +22,17 @@ _INSTRUCTIONS: Complete all required deliverable sections below._
 
 ### The issue we are hoping to solve
 
-REPLACE THIS SENTENCE with a short description, 2-3 sentences in length, of the specific sustainability problem your solution is meant to address.
+In a world surrounded by technologies and great progress in Clean water and sanitation, billions of people still lack access to safe drinking water, sanitation and hygiene.
+As of today, 2.4 billions of people live in water stressed countries.
+A lack of both cross-sector coordination over water and operational arrangements for transboundary water cooperation threatens the achievement of Sustainable Development Goals. When we speak about transboundary water cooperation, let us not limit ourselves to only the regional boundaries, but also cross functional boundaries.
 
 ### How our technology solution can help
 
-REPLACE THIS SENTENCE with a short description of your team's solution, in about 10 words.
+Thanks to our Aqua Rescue app for the Malls and the NGOs, we will be able to increase access to water in urban areas with the support of cross sector operational arrangements.
 
 ### Our idea
 
-INSTRUCTIONS: Replace this paragraph with a longer description of your solution. In about 500 words, describe your solution in more detail. Include the real-world problem you identified, describe the technological solution you have created, and explain how it’s an improvement over existing solutions. You can supply additional documentation in this source code repository that you link to as well.
+Aqua-Rescue is an innovative application designed to address three critical aspects of water management in malls: identifying water leaks, estimating the availability of reusable water and incorporating rainfall analysis feature to facilitate rainwater harvesting in malls thereby further reducing their dependency on external water sources and promoting sustainability. With a focus on sustainability and aiding NGOs in their initiatives to ensure availability and sustainable management of water and sanitation for all, this application offers real-time monitoring, alerts, and data analysis to help conserve water resources.
 
 More detail is available in our [description document](./docs/DESCRIPTION.md).
 
@@ -45,14 +40,9 @@ More detail is available in our [description document](./docs/DESCRIPTION.md).
 
 ### IBM AI service(s) used
 
-_INSTRUCTIONS: Included here is a list of commonly used IBM AI services. Remove any services you did not use, or add others from the linked catalog not already listed here. Leave only those included in your solution code. Provide details on where and how you used each IBM AI service to help judges review your implementation. Remove these instructions._
-
-- [IBM Natural Language Understanding](https://cloud.ibm.com/catalog/services/natural-language-understanding) - WHERE AND HOW THIS IS USED IN OUR SOLUTION
-- [Watson Assistant](https://cloud.ibm.com/catalog/services/watson-assistant) - WHERE AND HOW THIS IS USED IN OUR SOLUTION
 - [Watson Discovery](https://cloud.ibm.com/catalog/services/watson-discovery) - WHERE AND HOW THIS IS USED IN OUR SOLUTION
-- [Watson Speech to Text](https://cloud.ibm.com/catalog/services/speech-to-text) - WHERE AND HOW THIS IS USED IN OUR SOLUTION
-- [Watson Text to Speech](https://cloud.ibm.com/catalog/services/text-to-speech) - WHERE AND HOW THIS IS USED IN OUR SOLUTION
-- List any additional [IBM AI services](https://cloud.ibm.com/catalog?category=ai#services) used or remove this line
+- [Watson Machine Learning](https://cloud.ibm.com/catalog/services/watson-machine-learning) - WHERE AND HOW THIS IS USED IN OUR SOLUTION
+- [Watson Studio](https://cloud.ibm.com/catalog/services/watson-studio) - WHERE AND HOW THIS IS USED IN OUR SOLUTION
 
 ### Other IBM technology used
 
@@ -62,16 +52,25 @@ INSTRUCTIONS: List any other IBM technology used in your solution and describe h
 
 Diagram and step-by-step description of the flow of our solution:
 
-![Video transcription/translaftion app](https://developer.ibm.com/developer/tutorials/cfc-starter-kit-speech-to-text-app-example/images/cfc-covid19-remote-education-diagram-2.png)
+![Architecture](https://raw.githubusercontent.com/tvelingkar/Aqua-Rescue/main/images/architecture.jpg)
 
-1. The user navigates to the site and uploads a video file.
-2. Watson Speech to Text processes the audio and extracts the text.
-3. Watson Translation (optionally) can translate the text to the desired language.
-4. The app stores the translated text as a document within Object Storage.
+#### Mall App
+1. The Mall Personnel navigates to the dashboard.
+2. The Dashboard shows following information:
+  - Water consumption statistics
+  - Ongoing leaks if any
+  - Retreated water Statistics
+  - Rainwater harvesting insights
+3. The Mall Personnel can act upon the leaks in timely manner to mitigate water wastage.
+4. The Mall Personnel can take necessary actions based upon the insights provided.
+
+#### NGO App
+1. The NGO Personnel navigates to the dashboard.
+2. The dashboard lists the nearby Malls where water is available for reservation.
+3. Based on the needs the NGO can reserve the water.
+4. Event list screen is also available to reserve water in advance based on the event needs.
 
 ## Presentation materials
-
-_INSTRUCTIONS: The following deliverables should be officially posted to your My Team > Submissions section of the [Call for Code Global Challenge resources site](https://cfc-prod.skillsnetwork.site/), but you can also include them here for completeness. Replace the examples seen here with your own deliverable links._
 
 ### Solution demo video
 
@@ -81,56 +80,63 @@ _INSTRUCTIONS: The following deliverables should be officially posted to your My
 
 The project currently does the following things.
 
-- Feature 1
-- Feature 2
-- Feature 3
+- Mall App: Display Water leak / Rainwater harvesting Insights
+- NGO App: List nearby Malls with available water information
+- NGO App: Reserve water from Malls
 
 In the future we plan to...
 
 See below for our proposed schedule on next steps after Call for Code 2023 submission.
 
-![Roadmap](./images/roadmap.jpg)
+![Roadmap](./images/roadmap.png)
+
 
 ## Additional details
 
-_INSTRUCTIONS: The following deliverables are suggested, but **optional**. Additional details like this can help the judges better review your solution. Remove any sections you are not using._
-
 ### How to run the project
 
-INSTRUCTIONS: In this section you add the instructions to run your project on your local machine for development and testing purposes. You can also add instructions on how to deploy the project in production.
+Clone the project
 
-### Live demo
+```bash
+  git clone https://github.com/tvelingkar/Aqua-Rescue.git
+```
 
-You can find a running system to test at...
+Go to the project directory
 
-See our [description document](./docs/DESCRIPTION.md) for log in credentials.
+```bash
+  cd Aqua-Rescue
+```
 
----
+Create .env files in api-app and frontend folder
 
-_INSTRUCTIONS: You can remove the below section from your specific project README._
+#### api-app/.env
 
-## About this template
+```bash
+MONGODB_DB=callforcode
+MONGODB_URL=<Your Mongo DB URL>
+```
 
-### Contributing
+#### frontend/.env
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+```bash
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
+```
 
-### Versioning
+Running Backend
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+```bash
+  cd api-app
+  yarn install
+  yarn start
+```
 
-### Authors
+Backend will run on http://localhost:8000
 
-<a href="https://github.com/Call-for-Code/Project-Sample/graphs/contributors">
-  <img src="https://contributors-img.web.app/image?repo=Call-for-Code/Project-Sample" />
-</a>
+Running Frontend
 
-- **Billie Thompson** - _Initial work_ - [PurpleBooth](https://github.com/PurpleBooth)
-
-### License
-
-This project is licensed under the Apache 2 License - see the [LICENSE](LICENSE) file for details.
-
-### Acknowledgments
-
-- Based on [Billie Thompson's README template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
+```bash
+  cd frontend
+  yarn install
+  yarn start
+```
+Frontend will run on http://localhost:3000
