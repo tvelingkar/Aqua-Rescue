@@ -15,7 +15,7 @@ def get_bam_creds():
 
 
 def get_numeric_value(str):
-    return re.findall('\d+', str)[0]
+    return re.findall('(\d+(?:\.\d+)?)', str)[0]
 
 
 def get_states():

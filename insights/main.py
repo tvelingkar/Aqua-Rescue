@@ -76,32 +76,41 @@ def main():
         chain_type_kwargs={"prompt": PROMPT}
     )
 
-    output = []
+    finalOutput = []
     states = get_states()
 
     for state in states:
-        quest1 = "Is there water Scarcity in "+state
+        quest = "What is total water harvesting in million litres for "+state
+        result = qa_chain({"query": quest})
+        output = get_numeric_value(result['result'])
+
+        quest1 = "What is total water usage in million litres for "+state
         result1 = qa_chain({"query": quest1})
-        output1='no'
-        if "yes" in result1['result'].lower(): 
-            output1="yes"
-            
+        output1 = get_numeric_value(result1['result'])
 
         quest2 = "What is total water consumption in million litres for "+state
         result2 = qa_chain({"query": quest2})
-        output2=get_numeric_value(result2['result'])
+        output2 = get_numeric_value(result2['result'])
 
+        quest3 = "Is there water Scarcity in "+state
+        result3 = qa_chain({"query": quest3})
+        output3 = 'no'
+        if "yes" in result3['result'].lower():
+            output3 = "yes"
 
-        output.append(
-            {"state": state, "Water Scarcity": output1, "Water Consumption in million litres": output2})
+        finalOutput.append(
+            {"state": state,
+             "Water Harvesting in million litres": output,
+             "Water Usage in million litres": output1,
+             "Water Consumption in million litres": output2,
+             "Water Scarcity": output3})
         print('\n')
         print('\n')
-        print(output)
+        print(finalOutput)
         print('\n')
         print('\n')
 
-    
-    df=pd.DataFrame(output)
+    df=pd.DataFrame(finalOutput)
     df.to_excel(DATA_DIR_PATH+"output_by_watson_ai.xlsx", index=False)
 
 
