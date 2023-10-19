@@ -1,0 +1,5 @@
+pymilvus
+pandas
+langchain
+ibm-generative-ai
+pymongo
