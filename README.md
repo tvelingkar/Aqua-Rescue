@@ -69,7 +69,7 @@ Diagram and step-by-step description of the flow of our solution:
 
 ### Solution demo video
 
-[![Watch the video](https://raw.githubusercontent.com/tvelingkar/Aqua-Rescue/main/images/banner.png)](https://youtu.be/tU3G3hi7WQE)
+[![Watch the video](https://raw.githubusercontent.com/tvelingkar/Aqua-Rescue/main/images/video_banner.png)](https://youtu.be/tU3G3hi7WQE)
 
 ### Project development roadmap
 
