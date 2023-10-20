@@ -1,5 +1,5 @@
 # Aqua Rescue
-![Aqua Rescue Logo](./images/icon.svg)
+<img alt="Aqua Rescue Logo" src="https://raw.githubusercontent.com/tvelingkar/Aqua-Rescue/main/images/icon.svg"  width="140" height="100">
 
 Aqua Rescue is an innovative application designed to address three critical aspects of water management in malls: identifying water leaks, estimating the availability of reusable water and incorporating rainfall analysis feature to facilitate rainwater harvesting in malls thereby further reducing their dependency on external water sources and promoting sustainability. With a focus on sustainability and aiding NGOs in their initiatives to ensure availability and sustainable management of water and sanitation for all, this application offers real-time monitoring, alerts, and data analysis to help conserve water resources.
 
